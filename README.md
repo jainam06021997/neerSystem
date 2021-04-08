@@ -1,4 +1,4 @@
-# regencyRopeBackend
+# Neer Systems
 
 ### To install packages run `npm install`
 
