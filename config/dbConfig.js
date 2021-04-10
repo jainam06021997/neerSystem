@@ -32,7 +32,7 @@ const db = mysql.createPool({
   port: 3306,
   // connectTimeout: 20000,
   // multipleStatements: true,
-  // database: 'neer_system',
+  database: 'neer_system',
 });
 
 const connectionCheck = () => {
