@@ -18,14 +18,21 @@
 // module.exports = connection;
 
 const mysql = require('mysql');
-mysql.createConnection({multipleStatements: true});
+// mysql.createConnection({multipleStatements: true});
 
 const db = mysql.createPool({
-  connectionLimit : 100,
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'neer_system',
+  // connectionLimit : 100,
+  connectionLimit : 1000,
+  connectTimeout  : 60 * 60 * 1000,
+  acquireTimeout  : 60 * 60 * 1000,
+  timeout         : 60 * 60 * 1000,
+  host: 'neersytems.ckuhkerjn7n2.us-east-2.rds.amazonaws.com',
+  user: 'admin',
+  password: 'Ja!nam97',
+  port: 3306,
+  // connectTimeout: 20000,
+  // multipleStatements: true,
+  // database: 'neer_system',
 });
 
 const connectionCheck = () => {
