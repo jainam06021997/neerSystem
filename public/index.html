@@ -844,7 +844,7 @@
             </div> -->
             <!--Form Group-->
             <div class="form-group">
-              <button type="submit" class="theme-btn btn-style-two" onclick="sendRequest()">Send Message</button>
+              <button type="submit" class="theme-btn btn-style-two" onclick="return sendRequest()">Send Message</button>
               <!-- <input type="submit" name="submit" class="theme-btn btn-style-two" value="Submit"> -->
               <!-- <input type="hidden" name="action" value="send_message" /> -->
             </div>
@@ -990,36 +990,45 @@
     <script src="js/owl.js"></script>
     <script src="js/wow.js"></script>
     <script src="js/appear.js"></script>
-	<script src="js/validate.js"></script>
+	  <script src="js/validate.js"></script>
     <script src="js/script.js"></script>
     <script src="slider/ideal-image-slider.js"></script>
-    <script>
+    <script type="text/javascript">
       var slider = new IdealImageSlider.Slider('#slider');
       slider.start();
 
       function sendRequest() {
         $('#contact-form').submit((e) => {
+          e.stopImmediatePropagation();
           e.preventDefault();
           let inputs = {};
           let input_serialized = $('#contact-form').serializeArray();
+          let errCount = 0;
           input_serialized.forEach((field) => {
+            if (field.value === '' || field.value === null || field.value === undefined) {
+              errCount += 1;
+            }
             inputs[field.name] = field.value;
           });
-          fetch("/contactus", {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(inputs)
-          })
-          .then((res) => res.json())
-          .then((data) => {
-            $('#contact-form')[0].reset();
-            alert(data.message);
-          })
-          .catch((err) => {
-            alert(err.message);
-          });
+          if (errCount > 0) {
+            alert('Please enter valid values and try again');
+          } else {
+            fetch("/contactus", {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(inputs)
+            })
+            .then((res) => res.json())
+            .then((data) => {
+              $('#contact-form')[0].reset();
+              alert(data.message);
+            })
+            .catch((err) => {
+              alert(err.message);
+            });
+          }
         })
       }
     </script>
