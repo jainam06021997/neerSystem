@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 
 router.post('/contactus', async (req, res) => {
   try{
-    const response = await contactUsCtrl.contactus(req.body);
+    // const response = await contactUsCtrl.contactus(req.body);
     res.status(200).json({ success: true, data: [], message: 'Your request send successfully' });
   }
   catch(error){

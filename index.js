@@ -5,13 +5,13 @@ var bodyParser = require('body-parser');
 var path = require('path');
 
 var app = express();
-var MySQL = require('./config/dbConfig');
+// var MySQL = require('./config/dbConfig');
 
-MySQL.connectionCheck.then((data) => {
-  console.log(data);
-}).catch((err) => {
-  console.log(err);
-});
+// MySQL.connectionCheck.then((data) => {
+//   console.log(data);
+// }).catch((err) => {
+//   console.log(err);
+// });
 
 var contactUsAPI = require('./api/contactUsAPI');
 var adminAPI = require('./api/adminAPI');

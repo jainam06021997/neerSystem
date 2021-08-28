@@ -32,7 +32,7 @@ router.post('/login', async (req, res) => {
 
 router.get('/dashboard', async (req, res) => {
     try {
-        const response = await contactUsCtrl.list(req);
+        const response = []; // await contactUsCtrl.list(req);
         res.render('contactus', {data: response});
     } catch(error) {
         res.status(500).json({success: false, error});
