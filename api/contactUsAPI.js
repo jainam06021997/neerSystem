@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var contactUsCtrl = require('./../ctrl/contactUsCtrl');
+// var contactUsCtrl = require('./../ctrl/contactUsCtrl');
 
 router.get('/', async (req, res) => {
   try{
